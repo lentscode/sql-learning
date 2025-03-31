@@ -4,6 +4,7 @@ services:
     volumes:
       - ./.data:/var/lib/mysql
       - ./config:/usr/config
+      - ./queries:/usr/queries
     ports:
       - 3306:3306
     environment:
