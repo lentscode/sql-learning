@@ -1,4 +1,4 @@
-a--
+--
 -- Create schema rifornimenti
 --
 
