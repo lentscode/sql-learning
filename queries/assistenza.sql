@@ -50,3 +50,19 @@ WHERE p.cod_pc = r.cod_pc_r
 
 -- QUERY E
 -- selezionare, per ogni data, il tecnico che ha riparato ilmaggior numero di personal
+
+-- QUERY F
+-- selezionare il personal che ha totalizzato il maggior costo di riparazione, considerando le ore di riparazione e il relativo costo orario
+
+SELECT p.cod_pc, SUM(r.ore * t.costo_orario) AS costo_totale
+FROM pc p, tecnico t, riparazione r
+WHERE p.cod_pc = r.cod_pc_r
+  AND t.cf = r.cf_r
+GROUP BY p.cod_pc
+HAVING costo_totale >= ALL (
+  SELECT SUM(r.ore * t.costo_orario)
+  FROM pc p, tecnico t, riparazione r
+  WHERE p.cod_pc = r.cod_pc_r
+    AND t.cf = r.cf_r
+  GROUP BY p.cod_pc
+)

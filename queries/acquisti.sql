@@ -27,7 +27,6 @@ WHERE NOT EXISTS (
 );
 
 
-
 -- c) selezionare il nome del cliente che ha fatto reclami per tutti gli operatori
 
 SELECT r.nome_cl
