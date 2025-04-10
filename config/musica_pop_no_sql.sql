@@ -65,8 +65,7 @@ INSERT INTO acquisto VALUES(4, 'T1', '1996-01-21', 1);
 -- QUERY (ALGEBRA RELAZIONALE a), b))
 -- 
 
--- a) selezionare tutti i dati dei clienti che dopo il 1/1/1997 non hanno acquistato
--- nessun cd prodotto dalla casa discografica 'DiscoJolli'
+-- a) selezionare tutti i dati dei clienti che dopo il 1/1/1997 non hanno acquistato nessun cd prodotto dalla casa discografica 'DiscoJolli'
 
 
 -- b) selezionare il numero tessera dei clienti che hanno acquistato tuttii cd

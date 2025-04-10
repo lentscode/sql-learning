@@ -39,3 +39,22 @@ SELECT fs.anno, SUM(fs.qty)
 FROM fornisce fs, fornitore fo
 WHERE fo.cf = fs.cf_f AND fo.citta = 'Modena'
 GROUP BY fs.anno;
+
+-- QUERY E
+-- selezionare, per ogni anno, il codice del fornitore che ha fornito in totale la maggiore quantità di prodotti
+
+SELECT fs.anno, fs.cod_p_f, SUM(fs.qty)
+FROM fornisce fs
+WHERE fs.cod_p_f = ANY (
+  SELECT fs1.cod_p_f
+  FROM fornisce fs1
+  WHERE fs1.anno = fs.anno
+  GROUP BY fs1.cod_p_f
+  HAVING SUM(fs1.qty) >= ALL (
+    SELECT SUM(fs.qty)
+    FROM fornisce fs
+    WHERE fs.anno = fs1.anno
+    GROUP BY fs.cod_p_f
+  )
+)
+GROUP BY fs.anno, fs.cod_p_f;
